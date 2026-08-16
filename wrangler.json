@@ -1,8 +1,8 @@
 {
-	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "better-t3-stack",
+	"$schema": "node_modules/typeflare/schema.json",
+	"name": "better-stack",
 	"compatibility_date": "2025-05-05",
-    "compatibility_flags": ["nodejs_compat"],
+	"compatibility_flags": ["nodejs_compat"],
 	"minify": true,
 	"main": "./server/index.ts",
 	"observability": {
@@ -11,6 +11,13 @@
 	"vars": {
 		"NODE_ENV": "production",
 		"BUN_VERSION": "1.2.15"
+	},
+	"env": {
+		"development": {
+			"vars": {
+				"DEV": 1
+			}
+		}
 	},
 	"assets": {
 		"directory": "out",
@@ -23,17 +30,28 @@
 	"r2_buckets": [
 		{
 			"binding": "BUCKET",
-			"bucket_name": "better-t3-stack"
+			"bucket_name": "better-stack"
 		}
 	],
-    "d1_databases": [
+	"d1_databases": [
 		{
-		    "binding": "DATABASE",
-            "database_name": "better-t3-stack",
-            "database_id": "<ID>",
-            "migrations_dir": "drizzle",
+			"binding": "DATABASE",
+			"database_name": "better-stack",
+			"database_id": "<ID>",
+			"migrations_dir": "drizzle",
 			"preview_database_id": "<ID>",
-			"remote": true,
+			"remote": true
 		}
 	],
+	"typeflare": {
+		"assets": {
+			"ASSETS": null
+		},
+		"r2_buckets": {
+			"BUCKET": true
+		},
+		"d1_databases": {
+			"DATABASE": true
+		}
+	}
 }

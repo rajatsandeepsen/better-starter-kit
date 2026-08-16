@@ -1,3 +1,4 @@
+import type { D1Database } from "typeflare";
 import { createAuth } from "@/server/auth";
 import { createDB } from "@/server/db";
 

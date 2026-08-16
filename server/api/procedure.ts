@@ -1,15 +1,7 @@
-import { tryAsync } from "@/lib/tools";
-import type { AUTH } from "@/server/auth";
-import type { CreatedDB } from "@/server/db";
 import { ORPCError, type ORPCErrorCode } from "@orpc/client";
 import { os } from "@orpc/server";
-
-export type StaticContextORPC = {
-	db: CreatedDB;
-	auth: AUTH;
-	req: Request;
-	waitUntil: WaitUntil;
-};
+import { triedAsync, tryAsync } from "@/lib/tools";
+import type { StaticContextORPC } from "./context";
 
 export const getError = (
 	code: ORPCErrorCode = "INTERNAL_SERVER_ERROR",
@@ -29,6 +21,12 @@ export const handleError = (error: Error, message: string = "1") => {
 		`INTERNAL_SERVER_ERROR - ${message}`,
 		error,
 	);
+};
+
+export const tryAPI = async <D>(tag: string, promise: Promise<D>) => {
+	const { error, data } = await triedAsync(promise, tag);
+	if (error) throw handleError(error, tag);
+	return data;
 };
 
 export const publicProcedure = os.$context<StaticContextORPC>();

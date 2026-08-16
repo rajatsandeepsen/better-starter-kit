@@ -1,16 +1,15 @@
-/// <reference types="@cloudflare/workers-types" />
+import type { TypeFlareHono } from "typeflare";
+import type { AUTH } from "@/server/auth";
+import type { CreatedDB } from "@/server/db";
+import type Wrangler from "@/wrangler.json";
 
-type CloudflareBinding = {
-  DATABASE: D1Database;
-  // CHAT: DurableObjectNamespace
-};
+export type WaitUntil = (p: Promise<unknown>) => void;
 
-type WaitUntil = (p: Promise<unknown>) => void
-
-declare global {
-  namespace NodeJS {
-    interface ProcessEnv extends CloudflareBindings {
-      // Additional environment variables can be added here
-    }
-  }
-}
+export type HonoType = TypeFlareHono<
+	typeof Wrangler,
+	{
+		auth: AUTH;
+		db: CreatedDB;
+		waitUntil: WaitUntil;
+	}
+>;

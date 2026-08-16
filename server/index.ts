@@ -5,11 +5,11 @@ import { cors } from "hono/cors";
 import { logger } from "hono/logger";
 import { triedAsync } from "@/lib/tools";
 import { appRouter } from "@/server/api";
+import { createContext, createVar } from "@/server/api/context";
 import { createAuth } from "@/server/auth";
-import { createContext, createVar } from "@/server/context";
 import { createDB } from "@/server/db";
-import type { HonoType } from "./context/types";
 import cron from "./cron";
+import type { HonoType } from "./types";
 
 const app = new Hono<HonoType>({
 	strict: false,
@@ -41,9 +41,7 @@ app.use(
 	}),
 );
 
-app.use(
-	createVar("db", (c) => createDB(c.env.DATABASE))
-);
+app.use(createVar("db", (c) => createDB(c.env.DATABASE)));
 
 app.use(
 	createVar("auth", (c) => {

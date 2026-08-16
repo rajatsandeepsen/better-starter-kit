@@ -1,7 +1,10 @@
 import type { Context } from "hono";
 import { createMiddleware } from "hono/factory";
-import type { StaticContextORPC } from "../api/procedure";
-import type { HonoType } from "./types";
+import type { HonoType } from "@/server/types";
+
+export type StaticContextORPC = HonoType["Variables"] & {
+	req: Request;
+};
 
 export const createVar = <T extends keyof HonoType["Variables"]>(
 	name: T,

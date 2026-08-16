@@ -1,5 +1,5 @@
 import type { CronContext, CronMiddleware } from "kuron";
-import type { HonoType } from "../context/types";
+import type { HonoType } from "../types";
 
 export const createCronVar =
 	<T extends keyof HonoType["Variables"]>(
