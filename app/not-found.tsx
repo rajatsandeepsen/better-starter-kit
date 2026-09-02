@@ -9,7 +9,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 
-export default function() {
+export default function () {
 	return (
 		<Container>
 			<NotFound />

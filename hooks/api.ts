@@ -8,34 +8,34 @@ import { env } from "env";
 import { toast } from "sonner";
 
 export const queryClient = new QueryClient({
-    queryCache: new QueryCache({
-        onError: (error) => {
-            toast.error(`Error: ${error.message}`, {
-                action: {
-                    label: "retry",
-                    onClick: () => {
-                        queryClient.invalidateQueries();
-                    },
-                },
-            });
-        },
-    }),
+	queryCache: new QueryCache({
+		onError: (error) => {
+			toast.error(`Error: ${error.message}`, {
+				action: {
+					label: "retry",
+					onClick: () => {
+						queryClient.invalidateQueries();
+					},
+				},
+			});
+		},
+	}),
 });
 
 const baseUrl =
-    env.NEXT_PUBLIC_SERVER_URL ??
-    (typeof window !== "undefined"
-        ? window.location.origin
-        : "http://localhost:4000");
+	env.NEXT_PUBLIC_SERVER_URL ??
+	(typeof window !== "undefined"
+		? window.location.origin
+		: "http://localhost:4000");
 
 export const link = new RPCLink({
-    url: `${baseUrl}/api`,
-    fetch(url, options) {
-        return fetch(url, {
-            ...options,
-            credentials: "include",
-        });
-    },
+	url: `${baseUrl}/api`,
+	fetch(url, options) {
+		return fetch(url, {
+			...options,
+			credentials: "include",
+		});
+	},
 });
 
 export const client: RouterClient<AppRouter> = createORPCClient(link);

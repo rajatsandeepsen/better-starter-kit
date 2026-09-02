@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { api } from "@/hooks/api";
 import { authClient } from "@/hooks/auth";
@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 export default function Dashboard() {
-	const router = useRouter()
+	const router = useRouter();
 	const { data: session, isPending } = authClient.useSession();
 
 	const privateData = useQuery(api.privateData.queryOptions());

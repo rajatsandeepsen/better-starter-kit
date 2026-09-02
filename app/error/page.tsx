@@ -15,7 +15,7 @@ import {
 	CardTitle,
 } from "@/components/ui/card";
 
-export default function() {
+export default function () {
 	const params = useSearchParams();
 	const error = params.get("error");
 	const errorDescription = params.get("error_description");

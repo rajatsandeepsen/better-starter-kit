@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from "cn";
 import { Loader2Icon } from "lucide-react";
 
 export default function ({ className }: { className?: string }) {
