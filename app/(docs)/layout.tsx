@@ -1,5 +1,7 @@
 import { Container } from "@/components/container";
 
+export const dynamic = "force-static";
+
 export default function ({
 	children,
 }: Readonly<{
