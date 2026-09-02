@@ -25,7 +25,8 @@ export const createAuth = (
 		},
 		trustedOrigins,
 		database: drizzleAdapter(db, {
-			provider: "sqlite",
+			provider: "pg",
+			// provider: "sqlite",
 			schema,
 		}),
 		emailAndPassword: {

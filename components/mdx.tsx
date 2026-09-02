@@ -6,6 +6,9 @@ import type * as React from "react";
 import { Button } from "@/components/ui/button";
 
 export const components: MDXComponents = {
+	wrapper: ({ className, ...props }: React.ComponentProps<"div">) => (
+		<div className={cn("", className)} {...props} />
+	),
 	h1: ({ className, ...props }: React.ComponentProps<"h1">) => (
 		<h1 className={cn("mt-2 text-3xl", className)} {...props} />
 	),
